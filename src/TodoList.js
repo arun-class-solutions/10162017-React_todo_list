@@ -1,6 +1,33 @@
 import React, { Component } from "react";
+import update from "immutability-helper";
 
 class TodoList extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      todos: [],
+      todoInput: ""
+    }
+  }
+
+  handleChange(event) {
+    this.setState(update(this.state, {
+      $merge: {
+        todoInput: event.target.value
+      }
+    }));
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+
+    this.setState({
+      todos: this.state.todos.concat(this.state.todoInput),
+      todoInput: ""
+    });
+  }
+
   render() {
     return (
       <div>
@@ -9,13 +36,15 @@ class TodoList extends Component {
         		What do you want to do today?
         	</div>
 
-        	<div className="margin-top-20">
-        		<input type="text" className="form-control" placeholder="Your todo..." />
-        	</div>
+          <form onSubmit={this.handleSubmit.bind(this)}>
+          	<div className="margin-top-20">
+          		<input onChange={this.handleChange.bind(this)} type="text" className="form-control" placeholder="Your todo..." />
+          	</div>
 
-        	<div className="margin-top-20">
-        		<button type="button" id="submit-todo" className="btn btn-primary">Submit Todo</button>
-        	</div>
+          	<div className="margin-top-20">
+          		<button type="submit" id="submit-todo" className="btn btn-primary">Submit Todo</button>
+          	</div>
+          </form>
         </div>
 
         <div id="todo-list" className="small-container">
