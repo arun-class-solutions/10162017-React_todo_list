@@ -49,8 +49,11 @@ class TodoList extends Component {
 
         <div id="todo-list" className="small-container">
         	<ol>
-        		<li>I want to go shopping <a href="#">Done</a></li>
-        		<li>Clean the house <a href="#">Done</a></li>
+            {this.state.todos.map((todo, index) => {
+              return (
+        		    <li key={index}>{todo} <a href="#">Done</a></li>
+              );
+            }) }
         	</ol>
         </div>
       </div>
