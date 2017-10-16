@@ -38,7 +38,7 @@ class TodoList extends Component {
 
           <form onSubmit={this.handleSubmit.bind(this)}>
           	<div className="margin-top-20">
-          		<input onChange={this.handleChange.bind(this)} type="text" className="form-control" placeholder="Your todo..." />
+          		<input onChange={this.handleChange.bind(this)} type="text" className="form-control" placeholder="Your todo..." value={this.state.todoInput} />
           	</div>
 
           	<div className="margin-top-20">
